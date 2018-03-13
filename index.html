@@ -1,96 +1,138 @@
-<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Prototype 1</title>
+<head>
+    <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <!--<script src="cursor.js"></script>-->
+    <script src="cursor.js"></script>
 
-    <script type="text/javascript" src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
-    <script src="jquery-3.2.1.min.js"></script>
-    <script src="main.js"></script>
+</head>
+<body>
+<a-scene id="scene" shadow="type:soft">
+    <a-assets>
+        <a-asset-item id="house-obj" src="obj/insidethehouse.obj"></a-asset-item>
+        <a-asset-item id="house-mtl" src="obj/insidethehouse.mtl"></a-asset-item>
+        <a-asset-item id="t-obj" src="obj/table.obj"></a-asset-item>
+        <a-asset-item id="t-mtl" src="obj/table.mtl"></a-asset-item>
+        <a-asset-item id="b-obj" src="obj/box.obj"></a-asset-item>
+        <a-asset-item id="b-mtl" src="obj/box.mtl"></a-asset-item>
+        <a-asset-item id="d-obj" src="obj/deuvel.obj"></a-asset-item>
+        <a-asset-item id="d-mtl" src="obj/deuvel.mtl"></a-asset-item>
+        <a-asset-item id="h-obj" src="obj/hammer.obj"></a-asset-item>
+        <a-asset-item id="h-mtl" src="obj/hammer.mtl"></a-asset-item>
+        <a-asset-item id="r-obj" src="obj/reclamebord.obj"></a-asset-item>
+        <a-asset-item id="r-mtl" src="obj/reclamebord.mtl"></a-asset-item>
+    </a-assets>
+    <a-entity id="house" scale="1 1 1" position="0 0 0" rotation="0 -90 0" obj-model="obj: #house-obj; mtl: #house-mtl"></a-entity>
+    <a-entity id="table" scale="0.7 0.7 0.7" position="4 0 -3" rotation="0 -90 0" obj-model="obj: #t-obj; mtl: #t-mtl"></a-entity>
+    <a-entity id="doos" scale="0.7 0.7 0.7" position="1.5 0.1 0" rotation="0 -165 0" obj-model="obj: #b-obj; mtl: #b-mtl"></a-entity>
 
-  </head>
-  <body>
-    <a-scene id= "scene" stats>
+    <!--<a-box id="box1" position="1 0.05 -4" rotation="0 0 0" color="#6b6b6b" width="2.8" height="0.1" depth="0.75" opacity="0.5"></a-box>-->
+    <!--<a-box id="box2" position="1 0.9 -4" rotation="0 0 0" color="#6b6b6b" width="2.8" height="0.1" depth="0.75"></a-box>-->
 
-      <a-assets>
-        <!--<img id="materiaal" src="materiaal.jpg">-->
-        <!--<img id="stap0" src="stap0.jpg">-->
-        <!--<img id="stap1" src="stap1.jpg">-->
-        <!--<img id="stap2" src="stap2.jpg">-->
-        <!--<img id="stap3" src="stap3.jpg">-->
-
-        <a-asset-item id="inbus-obj" src="inbussleutel.obj"></a-asset-item>
-        <a-asset-item id="inbus-mtl" src="inbussleutel.mtl"></a-asset-item>
-        <a-asset-item id="hammer-obj" src="hammer.obj"></a-asset-item>
-        <a-asset-item id="hammer-mtl" src="hammer.mtl"></a-asset-item>
-        <a-asset-item id="schroef-obj" src="schroef2.obj"></a-asset-item>
-        <a-asset-item id="schroef-mtl" src="schroef2.mtl"></a-asset-item>
-        <a-asset-item id="deuvel-obj" src="deuvel.obj"></a-asset-item>
-        <a-asset-item id="deuvel-mtl" src="deuvel.mtl"></a-asset-item>
-      </a-assets>
-
-        <a-entity id="uitleg" text="value:Druk op het rechterblok voor de volgende bouwtekening; color:white" position="0 2.2 1"></a-entity>
-        <a-entity id="uitleg2" text="value:Druk op de tools om de tools in je hand te krijgen; color:white" rotation="0 -90 0" position="1.2 2.4 1.2"></a-entity>
-
-        <a-image id= "tekening" src="stap0.jpg" position = "0 1.95 -3" height="2.4" width="4"></a-image>
-        <a-box id="next" class="clickable" position="2.3 1 -3" width="0.5" height="0.5" depth="0.5" color="red"></a-box>
-        <a-box id="back" class="clickable" position="-2.3 1 -3" width="0.5" height="0.5" depth="0.5" color="red"></a-box>
-
-        <a-image id= "materiaal" src="materiaal.jpg" position = "3 1.95 0" height="2.4" width="4" rotation="0 -90 0"></a-image>
-
-        <a-box id="s-box" position="3 2.55 -1.2" width="0.1" height="0.7" depth="0.7" color="red" material="transparent: true; opacity: 0"></a-box>
-        <a-box id="h-box" class="clickable" onmouseenter="toolSelect('hammer','h-box')" position="3 2.55 0" width="0.1" height="0.7" depth="0.7" color="red" material="transparent: true; opacity: 0"></a-box>
-        <a-box id="inbus-box" class="clickable" onmouseenter="toolSelect('inbus','inbus-box')" position="3 2.55 1.2" width="0.1" height="0.7" depth="0.7" color="red" material="transparent: true; opacity: 0"></a-box>
-
-        <a-box id="screw-box" class="clickable" onmouseenter="toolSelect('schroef','screw-box')" position="3 1.25 -1.2" width="0.1" height="0.7" depth="0.7" color="red" material="transparent: true; opacity: 0"></a-box>
-        <a-box id="duvel-box" class="clickable" onmouseenter="toolSelect('deuvel','duvel-box')" position="3 1.25 0" width="0.1" height="0.7" depth="0.7" color="red" material="transparent: true; opacity: 0"></a-box>
-        <a-box id="empty-box" class="clickable" onmouseenter="toolSelect('empty','empty-box')" position="3 1.25 1.2" width="0.1" height="0.7" depth="0.7" color="red" material="transparent: true; opacity: 0"></a-box>
-
-        <a-plane position="0 0 -4" rotation="-90 0 0" width="20" height="20" material="src:floor.jpg; repeat:10 10"></a-plane>
+    <!--<a-box id="topbox1" position="2.45 0.475 -4" rotation="0 0 0" color="#6b6b6b" width="0.1" height="0.95" depth="0.75"></a-box>-->
+    <!--<a-box id="topbox2" position="-0.45 0.475 -4" rotation="0 0 0" color="#6b6b6b" width="0.1" height="0.95" depth="0.75"></a-box>-->
 
 
-      <a-entity id="kastScene" position="-1.5 0 -4" rotation="0 90 0">
+    <!--<a-box id="sbox1" position="0.30 0.475 -4" rotation="0 0 0" color="#6b6b6b" width="0.05" height="0.95" depth="0.75"></a-box>-->
+    <!--<a-box id="sbox2" position="1.05 0.475 -4" rotation="0 0 0" color="#6b6b6b" width="0.05" height="0.95" depth="0.75"></a-box>-->
+    <!--<a-box id="sbox3" position="1.75 0.475 -4" rotation="0 0 0" color="#6b6b6b" width="0.05" height="0.95" depth="0.75"></a-box>-->
 
-      </a-entity>
+    <!--<a-cylinder id="d1" position="0.30 0.14 -4.35" rotation="0 0 0" color="#d000ff" opacity="0.5" radius="0.01" height="0.08"></a-cylinder>-->
+    <!--<a-cylinder id="d1" position="1.05 0.14 -4.35" rotation="0 0 0" color="#d000ff" opacity="0.5" radius="0.01" height="0.08"></a-cylinder>-->
+    <!--<a-cylinder id="d1" position="1.75 0.14 -4.35" rotation="0 0 0" color="#d000ff" opacity="0.5" radius="0.01" height="0.08"></a-cylinder>-->
 
-      <a-box id="box1" class="clickable" onmouseenter="drag('box1')" cursorload position="2.15 1.5 -1" rotation="0 0 90" color="lightblue" width="3" height="0.1" depth="1">
-      </a-box>
-      <a-box id="box2" class="clickable" onmouseenter="drag('box2')" position="2 1.5 -1" rotation="0 0 90" color="lightblue"  width="3" height="0.1" depth="1">
-      </a-box>
-      <a-box id="boxs3" class="clickable" onmouseenter="drag('boxs3')" position="1.45 0.5 -1" rotation="0 0 0" color="lightblue" width="0.1" height="1" depth="1">
-      </a-box>
-      <a-box id="boxs4" class="clickable" onmouseenter="drag('boxs4')" position="1.3 0.5 -1" rotation="0 0 0" color="lightblue" width="0.1" height="1" depth="1">
-      </a-box>
-      <a-box id="boxs5" class="clickable" onmouseenter="drag('boxs5')" position="1.15 0.5 -1" rotation="0 0 0" color="lightblue" width="0.1" height="1" depth="1">
-      </a-box>
-      <a-box id="boxs6" class="clickable" onmouseenter="drag('boxs6')" position="1 0.5 -1" rotation="0 0 0" color="lightblue" width="0.1" height="1" depth="1">
-      </a-box>
 
-      <a-box width="-20" height="-20" depth="-15" color="#e0c6aa" position="0 0 -2"></a-box>
+    <!--<a-cylinder id="d1" position="0.30 0.14 -3.65" rotation="0 0 0" color="#d000ff" opacity="0.5" radius="0.01" height="0.08"></a-cylinder>-->
+    <!--<a-cylinder id="d1" position="1.05 0.14 -3.65" rotation="0 0 0" color="#d000ff" opacity="0.5" radius="0.01" height="0.08"></a-cylinder>-->
+    <!--<a-cylinder id="d1" position="1.75 0.14 -3.65" rotation="0 0 0" color="#d000ff" opacity="0.5" radius="0.01" height="0.08"></a-cylinder>-->
 
-      <a-entity id="camera" camera look-controls position="0 1.8 2">
+    <!--doos hover boxes-->
+    <a-image class="raam" id= "raam1" src="zonraam.png" position = "2.3 2.6 -10.5" height="3" width="3.5" rotation="0 0 0"></a-image>
+    <a-image class="raam" id= "raam2" src="zonraam.png" position = "7.2 2.6 -6" height="3" width="3.5" rotation="0 90 0"></a-image>
+    <a-image class="raam" id= "raam3" src="zonraam.png" position = "7.2 2.6 -1" height="3" width="3.5" rotation="0 90 0"></a-image>
+
+    <a-image id="uitleg" data-stap="1" src="1stap.jpg" position="3 1.3 -2.1" width="2" height="1.2" rotation="-20 -90 0"></a-image>
+
+    <a-plane id="tempbox" position="2.5 0.50 -2" color="black" width="1" height="0.3" rotation="0 -90 0"></a-plane>
+    <a-entity id="temp" position="2.45 0.55 -2" text="align: center; width: 1.5; value: Hoeveel graden is het buiten?" rotation="0 -90 0"></a-entity>
+
+    <a-entity id="ikeabox"  onmouseenter="ikeahover('ikeabox')" scale="1.5 1.5 1.5" position="0.3 1.5 3" rotation="0 90 0" obj-model="obj: #r-obj; mtl: #r-mtl"></a-entity>
+    <a-entity id="ikea"  position="-0.5 2.7 3" text="align: center; width: 3; value: Wat is de dichtsbijzijnde IKEA ?; color:blue;" rotation="0 180 0"></a-entity>
+    <a-entity onmouseenter="drag('1')" id="selector1" geometry="primity:box; width:0.4; height:1.5; depth:0.4;" material="color:red; opacity:0;" position="2.05 0.8 -0.2">
+    <a-box id="box11" position="0 0 0" rotation="0 0 90" color="#6b6b6b" width="1.4" height="0.05" depth="0.375">
+        <a-animation attribute="rotation"
+                     dur="4000"
+                     fill="forwards"
+                     to="0 360 90"
+                     easing="linear"
+                     repeat="indefinite"></a-animation>
+    </a-box>
+    </a-entity>
+    <a-entity onmouseenter="drag('2')" id="selector2" geometry="primity:box; width:0.4; height:0.5; depth:0.4;" material="color:red; opacity:0;" position="1.4 0.2375 0">
+    <a-box id="topbox11" position="0 0 0" rotation="0 0 0" color="#6b6b6b" width="0.05" height="0.475" depth="0.375">
+        <a-animation attribute="rotation"
+                     dur="4000"
+                     fill="forwards"
+                     to="0 360 0"
+                     easing="linear"
+                     repeat="indefinite"></a-animation>
+    </a-box>
+    </a-entity>
+    <a-entity onmouseenter="drag('3')" id="selector3" geometry="primity:box; width:0.4; height:0.5; depth:0.4;" material="color:red; opacity:0;" position="0.8 0.2375 0.15">
+    <a-box id="sbox33" position="0 0 0" rotation="0 0 0" color="#6b6b6b" width="0.025" height="0.475" depth="0.375">
+        <a-animation attribute="rotation"
+                     dur="4000"
+                     fill="forwards"
+                     to="0 360 0"
+                     easing="linear"
+                     repeat="indefinite"></a-animation>
+    </a-box>
+    </a-entity>
+    <a-entity onmouseenter="drag('4')" id="selector4" geometry="primity:box; width:0.1; height:0.2; depth:0.1;" material="color:red; opacity:0" position="1.5 0.25 -0.55">
+        <a-entity id="deuvel" scale="0.02 0.02 0.02" position="0 0 0" rotation="0 0 25" obj-model="obj: #d-obj; mtl: #d-mtl">
+            <a-animation attribute="rotation"
+                         dur="4000"
+                         fill="forwards"
+                         to="0 360 25"
+                         easing="linear"
+                         repeat="indefinite"></a-animation>
+        </a-entity>
+    </a-entity>
+
+    <a-entity onmouseenter="pickup('1')" id="pickup1" geometry="primity:box; width:1; height:0.1; depth:0.4;" material="color:red; opacity:0" position="1.7 0.1 -1.8">
+        <a-entity id="hammer" scale="0.2 0.2 0.2" position="-0.4 0 -0.04" rotation="0 0 -90" obj-model="obj: #h-obj; mtl: #h-mtl">
+        </a-entity>
+    </a-entity>
+    <a-entity id="emptyhand" geometry="primitive:cylinder; radius:0.3; height:0.001;" position="0.5 0.05 -1" material="color:#212121" onmouseenter="emptyHand()"></a-entity>
+    <a-entity position="0.5 0.1 -1" text="value: Hand legen; color:white; align:center; width:2" rotation="-90 180 45" onmouseenter="emptyHand()"></a-entity>
+
+
+    <a-entity id="camera" camera wasd-controls look-controls rotation="0 -90 0" position="0 1.8 -2">
         <a-entity
-                cursor="fuse: false;"
+                cursor="fuse: true; maxDistance: 500; timeout: 1000;"
                 id="cursor-main"
                 position="0 0 -1"
                 geometry="primitive: ring; radiusOuter: 0.02; radiusInner: 0.01; thetaLength: 360; thetaStart: 90;"
-                material="color: grey;"
-                raycaster="objects: .clickable"
+                material="color: #3b4f70;"
         >
-          <a-animation begin="cursor-hovering" attribute="geometry.thetaLength" fill="forwards" from="360" to="0" dur="1000" easing="ease-in"></a-animation>
-          <a-animation begin="mouseleave" attribute="geometry.thetaLength" fill="backwards" from="0" to="360" dur="0"></a-animation>
+            <a-animation begin="cursor-hovering" attribute="geometry.thetaLength" fill="forwards" from="360" to="0" dur="1000" easing="ease-in"></a-animation>
+            <a-animation begin="mouseleave" attribute="geometry.thetaLength" fill="backwards" from="0" to="360" dur="0"></a-animation>
         </a-entity>
         <a-entity
                 id="cursor-loader"
                 position="0 0 -1.0001"
                 geometry="primitive: ring; radiusOuter: 0.02; radiusInner: 0.01;"
-                material="color: lightgreen;"
+                material="color: #3b4f70;"
                 opacity="0"
         >
         </a-entity>
-      </a-entity>
+    </a-entity>
+    <a-entity light="type:ambient; color:#fff0dd; intensity:0.7;"></a-entity>
+    <a-entity light="type:directional; castShadow:true; color:#fff0dd; intensity: 0.25" position="0 10 10"></a-entity>
+    <a-entity light="type:directional; castShadow:true; color:#fff0dd; intensity: 0.25" position="2 3 -2"></a-entity>
+</a-scene>
 
-    </a-scene>
 
-  </body>
+
+</body>
 </html>
