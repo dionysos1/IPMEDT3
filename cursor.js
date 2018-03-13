@@ -4,6 +4,7 @@ homelng = 4.4682125;
 ikeachange = false;
 week = ['monday','tuesday','wednesday','thursday','friday','saturday','sunday'];
 day = week[new Date().getDay()];
+rotationdone = 0;
 
 window.onload = function() {
     hand = '';
@@ -11,41 +12,60 @@ window.onload = function() {
     stepsTaken = 0;
     deuvelsMoved = 0;
 
+    document.querySelector('a-scene').addEventListener('enter-vr', function () {
+        document.querySelector('a-camera').setAttribute('camera','userHeight: 1.6');
 
-    setSteps('box1','1 0.05 -4','0 0 0','2.8','0.1','0.75','green','0.2','placelong','1','box');
-
-
-    setSteps('sd1','0.30 0.14 -4.35','0 0 0','0','0.08','0','#d000ff','0.5','placedeuvel','4','cylinder','0.015','d1');
-    setSteps('sd2','1.05 0.14 -4.35','0 0 0','0','0.08','0','#d000ff','0.5','placedeuvel','4','cylinder','0.015','d2');
-    setSteps('sd3','1.75 0.14 -4.35','0 0 0','0','0.08','0','#d000ff','0.5','placedeuvel','4','cylinder','0.015','d3');
-    setSteps('sd4','0.30 0.14 -3.65','0 0 0','0','0.08','0','#d000ff','0.5','placedeuvel','4','cylinder','0.015','d4');
-    setSteps('sd5','1.05 0.14 -3.65','0 0 0','0','0.08','0','#d000ff','0.5','placedeuvel','4','cylinder','0.015','d5');
-    setSteps('sd6','1.75 0.14 -3.65','0 0 0','0','0.08','0','#d000ff','0.5','placedeuvel','4','cylinder','0.015','d6');
-
-    setSteps('sbox1','0.30 0.475 -4','0 0 0','0.05','0.75','0.75','green','0.2','placesmall','3','box');
-    setSteps('sbox2','1.05 0.475 -4','0 0 0','0.05','0.75','0.75','green','0.2','placesmall','3','box');
-    setSteps('sbox3','1.75 0.475 -4','0 0 0','0.05','0.75','0.75','green','0.2','placesmall','3','box');
-
-    setSteps('sd7','0.30 0.9 -4.35','0 0 0','0','0.08','0','#d000ff','0.5','placedeuvel','4','cylinder','0.015','d7');
-    setSteps('sd8','1.05 0.9 -4.35','0 0 0','0','0.08','0','#d000ff','0.5','placedeuvel','4','cylinder','0.015','d8');
-    setSteps('sd9','1.75 0.9 -4.35','0 0 0','0','0.08','0','#d000ff','0.5','placedeuvel','4','cylinder','0.015','d9');
-    setSteps('sd10','0.30 0.9 -3.65','0 0 0','0','0.08','0','#d000ff','0.5','placedeuvel','4','cylinder','0.015','d10');
-    setSteps('sd11','1.05 0.9 -3.65','0 0 0','0','0.08','0','#d000ff','0.5','placedeuvel','4','cylinder','0.015','d11');
-    setSteps('sd12','1.75 0.9 -3.65','0 0 0','0','0.08','0','#d000ff','0.5','placedeuvel','4','cylinder','0.015','d12');
+    });
 
 
 
-    setSteps('box2','1 0.9 -4','0 0 0','2.8','0.1','0.75','green','0.2','placelong','1','box');
-    setSteps('topbox1','2.45 0.475 -4','0 0 0','0.1','0.95','0.75','green','0.2','placetsmall','2','box');
-    setSteps('topbox2','-0.45 0.475 -4','0 0 0','0.1','0.95','0.75','green','0.2','placetsmall','2','box');
+
+    setSteps('box1','0 0.05 0','0 0 0','2.8','0.1','0.75','green','0.2','placelong','1','box');
+
+
+    setSteps('sd1','-0.70 0.14 -0.35','0 0 0','0','0.08','0','#d000ff','0.5','placedeuvel','4','cylinder','0.015','d1');
+    setSteps('sd2','0.05 0.14 -0.35','0 0 0','0','0.08','0','#d000ff','0.5','placedeuvel','4','cylinder','0.015','d2');
+    setSteps('sd3','0.75 0.14 -0.35','0 0 0','0','0.08','0','#d000ff','0.5','placedeuvel','4','cylinder','0.015','d3');
+    setSteps('sd4','-0.70 0.14 0.35','0 0 0','0','0.08','0','#d000ff','0.5','placedeuvel','4','cylinder','0.015','d4');
+    setSteps('sd5','0.05 0.14 0.35','0 0 0','0','0.08','0','#d000ff','0.5','placedeuvel','4','cylinder','0.015','d5');
+    setSteps('sd6','0.75 0.14 0.35','0 0 0','0','0.08','0','#d000ff','0.5','placedeuvel','4','cylinder','0.015','d6');
+
+    setSteps('sbox1','-0.70 0.475 0','0 0 0','0.05','0.75','0.75','green','0.2','placesmall','3','box');
+    setSteps('sbox2','0.05 0.475 0','0 0 0','0.05','0.75','0.75','green','0.2','placesmall','3','box');
+    setSteps('sbox3','0.75 0.475 0','0 0 0','0.05','0.75','0.75','green','0.2','placesmall','3','box');
+
+    setSteps('sd7','-0.70 0.9 -0.35','0 0 0','0','0.08','0','#d000ff','0.5','placedeuvel','4','cylinder','0.015','d7');
+    setSteps('sd8','0.05 0.9 -0.35','0 0 0','0','0.08','0','#d000ff','0.5','placedeuvel','4','cylinder','0.015','d8');
+    setSteps('sd9','0.75 0.9 -0.35','0 0 0','0','0.08','0','#d000ff','0.5','placedeuvel','4','cylinder','0.015','d9');
+    setSteps('sd10','-0.70 0.9 0.35','0 0 0','0','0.08','0','#d000ff','0.5','placedeuvel','4','cylinder','0.015','d10');
+    setSteps('sd11','0.05 0.9 0.35','0 0 0','0','0.08','0','#d000ff','0.5','placedeuvel','4','cylinder','0.015','d11');
+    setSteps('sd12','0.75 0.9 0.35','0 0 0','0','0.08','0','#d000ff','0.5','placedeuvel','4','cylinder','0.015','d12');
+
+
+
+    setSteps('box2','0 0.9 0','0 0 0','2.8','0.1','0.75','green','0.2','placelong','1','box');
+
+    setSteps('topbox2','-1.45 0.475 0','0 0 0','0.1','0.95','0.75','green','0.2','placetsmall','2','box');
+
+    setSteps('sc1','-1.55 0.9 -0.35','0 0 90','0','0.08','0','#ff0022','0.5','placeschroef','5','cylinder','0.015','s1');
+    setSteps('sc2','-1.55 0.05 -0.35','0 0 90','0','0.08','0','#ff0022','0.5','placeschroef','5','cylinder','0.015','s2');
+    setSteps('sc3','-1.55 0.9 0.35','0 0 90','0','0.08','0','#ff0022','0.5','placeschroef','5','cylinder','0.015','s3');
+    setSteps('sc4','-1.55 0.05 0.35','0 0 90','0','0.08','0','#ff0022','0.5','placeschroef','5','cylinder','0.015','s4');
+
+    setSteps('topbox1','1.45 0.475 0','0 0 0','0.1','0.95','0.75','green','0.2','placetsmall','2','box');
+
+    setSteps('sc5','1.55 0.9 -0.35','0 0 90','0','0.08','0','#ff0022','0.5','placeschroef','5','cylinder','0.015','s5');
+    setSteps('sc6','1.55 0.05 -0.35','0 0 90','0','0.08','0','#ff0022','0.5','placeschroef','5','cylinder','0.015','s6');
+    setSteps('sc7','1.55 0.9 0.35','0 0 90','0','0.08','0','#ff0022','0.5','placeschroef','5','cylinder','0.015','s7');
+    setSteps('sc8','1.55 0.05 0.35','0 0 90','0','0.08','0','#ff0022','0.5','placeschroef','5','cylinder','0.015','s8');
+
+
+
+
 
     makeStep();
-    weerInRaam();
     getLocation();
 
-    temperatuur = 0.0;
-    temperatuurbox = document.getElementById('tempbox');
-    temperatuurbox.onmouseenter = function(){ buitenTemp(temperatuur); };
 
     document.querySelector('a-scene').addEventListener('enter-vr',function () {
         $('#camera').attr('position','0 1.6 -2');
@@ -56,6 +76,7 @@ window.onload = function() {
 };
 
 function ikeahover(selector){
+	console.log('ikea seen');
     if(ikeachange==false) {
         loadCursor();
         var timer = setTimeout(function () {
@@ -76,11 +97,14 @@ function ikeahover(selector){
 function openwebsite(selector){
         loadCursor();
         var timer = setTimeout(function () {
-            $('#camera').append('<a-entity id="ikea"  position="0 0.5 -2" text="align: center; width: 3; value:Doe je VR bril af voor de website; color:black;" rotation="0 0 0"></a-entity>');
+            $('#camera').append('<a-entity id="ikeatext"  position="0 0.5 -2" text="align: center; width: 3; value:Doe je VR bril af voor de website; color:black;" rotation="0 0 0"></a-entity>');
             var timers = setTimeout(function () {
+                $("#ikeatext").remove();
+                $('#ikea').attr('text','');
                 var newwindow = window.open('http://www.ikea.com/nl/nl/catalog/products/00275848/', '_blank');
                 newwindow.location;
-            },10000)
+
+            },8000);
         }, 1050);
         document.getElementById(selector).addEventListener('mouseleave', function () {
             clearTimeout(timer);
@@ -101,58 +125,26 @@ function nextblad(){
         getBlad();
     }else if(stepsTaken == 20){
         getBlad();
+    }else if(stepsTaken == 21){
+        getBlad()
+    }else if(stepsTaken == 31){
+        getBlad();
+        document.querySelector('#kastent').emit('setthirpos');
+        setTimeout(function () {
+            document.querySelector('#kastent').emit('setthir');
+        },100);
+        setTimeout(function () {
+            document.querySelector('#kastent').emit('setfour');
+        },1500);
+
     }
 }
 
 function getBlad(){
     uitleg = document.getElementById('uitleg');
-    if(uitleg.getAttribute('src') != '7stap.jpg'){
+    if(uitleg.getAttribute('src') != '9stap.jpg'){
         uitleg.setAttribute("src", parseInt(uitleg.getAttribute("src")) + 1 + "stap.jpg" );
     }
-}
-
-function buitenTemp (temperatuur){
-    var temp = document.getElementById('temp');
-    temp.setAttribute("text", "align: center; width: 1.5; value: " + temperatuur.toFixed(1) + " graden"); // aantal graden naar de pagina
-}
-
-function weerInRaam(){
-    // var weer = document.getElementsByClassName("raam");
-    // var weer = document.getElementById('raam2')
-    var xhttp = new XMLHttpRequest();
-    var requestString = "http://api.openweathermap.org/data/2.5/weather"
-        + "?id=2751773"
-        + "&units=metric&format=json"
-        + "&APPID=cf84ef1f49c75b64222d55d97314d978";
-
-    xhttp.onreadystatechange = function(){
-        if(this.readyState == 4 && this.status == 200){
-            var response = JSON.parse(this.responseText);
-            var x = Object.values(response.weather);
-            console.log(response.main.temp);
-            temperatuur = response.main.temp;
-            // var temp = document.getElementById('temp')
-            // temp.setAttribute("text", "align: center; width: 1.5; value: " + response.main.temp.toFixed(1) + " graden"); // aantal graden naar de pagina
-            // var textbox = document.getElementById("text");
-            // textbox.setAttribute("text", "value: huidige buiten temperatuur: " + response.main.temp + " Celcius");
-            for (i = 1; i < 4; i++){
-                var weer = document.getElementById('raam'+i);
-
-                if (x[0].id >= 200 && x[0].id < 300){ weer.setAttribute("src", "thunderraam.png"); } //thunderstorm
-                if (x[0].id >= 300 && x[0].id < 500){ weer.setAttribute("src", "regenraam.png"); } //drizzle
-                if (x[0].id >= 500 && x[0].id < 600){ weer.setAttribute("src", "regenraam.png"); } //rain
-                if (x[0].id >= 600 && x[0].id < 700){ weer.setAttribute("src", "sneeuwraam.png"); } //snow
-                if (x[0].id > 700 && x[0].id < 800){ weer.setAttribute("src", "foggyraam.png"); } //atmosphere (fog)
-                if (x[0].id == 800){ weer.setAttribute("src", "zonraam.png"); } //clear
-                if (x[0].id > 800 && x[0].id < 900){ weer.setAttribute("src", "bewolktraam.png"); } //clouds
-                if (x[0].id >= 900 && x[0].id < 950){ weer.setAttribute("src", "thunderraam.png"); } //extreme
-                if (x[0].id >= 950 && x[0].id < 1000){ weer.setAttribute("src", "zonraam.png"); } //additional van clear tot hurricane
-            }
-            console.log(x);
-        }
-    };
-    xhttp.open("GET", requestString);
-    xhttp.send();
 }
 
 function setSteps(id,pos,rot,w,h,d,c,o,f,s,p,r,sid){
@@ -160,23 +152,56 @@ function setSteps(id,pos,rot,w,h,d,c,o,f,s,p,r,sid){
     stepArray.push(step);
 }
 
+function rotatefirst(){
+    document.querySelector('#kastent').emit('setfirst');
+}
+
+function rotatesec(){
+    document.querySelector('#kastent').emit('setsec');
+}
+
 function makeStep(){
-    if(stepsTaken < 7 || (stepsTaken > 8 && stepsTaken <17)) {
-        console.log('kek');
+    if(stepsTaken < 7 || (stepsTaken > 8 && stepsTaken <17) || (stepsTaken >= 20 && deuvelsMoved >= 12 && deuvelsMoved < 20)) {
         if (stepArray[0].p == 'box') {
-            var fun = stepArray[0].f + "('" + stepArray[0].id + "','" + stepArray[0].s + "')";
-            $('#scene').append('<a-box onmouseenter="' + fun + '" id="' + stepArray[0].id + '" position="' + stepArray[0].pos + '" rotation="' + stepArray[0].rot + '" color="' + stepArray[0].c + '" height="' + stepArray[0].h + '" width="' + stepArray[0].w + '" depth="' + stepArray[0].d + '" opacity="' + stepArray[0].o + '"></a-box>');
+            if(stepsTaken < 24){
+
+                var fun = stepArray[0].f + "('" + stepArray[0].id + "','" + stepArray[0].s + "')";
+                $('#kastent').append('<a-box onmouseenter="' + fun + '" id="' + stepArray[0].id + '" position="' + stepArray[0].pos + '" rotation="' + stepArray[0].rot + '" color="' + stepArray[0].c + '" height="' + stepArray[0].h + '" width="' + stepArray[0].w + '" depth="' + stepArray[0].d + '" opacity="' + stepArray[0].o + '"></a-box>');
+            }
+            if(stepsTaken == 24){
+            }
+            else if(stepsTaken == 25 || deuvelsMoved == 16){
+                document.querySelector('#kastent').emit('setsec');
+
+                var fun = stepArray[0].f + "('" + stepArray[0].id + "','" + stepArray[0].s + "')";
+                $('#kastent').append('<a-box onmouseenter="' + fun + '" id="' + stepArray[0].id + '" position="' + stepArray[0].pos + '" rotation="' + stepArray[0].rot + '" color="' + stepArray[0].c + '" height="' + stepArray[0].h + '" width="' + stepArray[0].w + '" depth="' + stepArray[0].d + '" opacity="' + stepArray[0].o + '"></a-box>');
+            }
         } else {
-            var fun = stepArray[0].f + "('" + stepArray[0].id + "','" + stepArray[0].sid + "','" + stepArray[0].s + "')";
-            $('#scene').append('<a-entity id="' + stepArray[0].sid + '" geometry="primitive:box; width:0.2; height:0.1; depth:0.2;" material="color:red; opacity:0;" position="' + stepArray[0].pos + '" onmouseenter="' + fun + '"  hit="animation:x; from:0 180 0; id:handhammer; rotation:30 180 0;"><a-cylinder id="' + stepArray[0].id + '" position="0 0 0" rotation="' + stepArray[0].rot + '" color="' + stepArray[0].c + '" height="' + stepArray[0].h + '"  radius="' + stepArray[0].r + '" opacity="' + stepArray[0].o + '"></a-cylinder></a-entity>');
+            if(stepsTaken >= 20){
+                if(stepsTaken == 20){
+                    document.querySelector('#kastent').emit('setfirst');
+                }
+                var fun = stepArray[0].f + "('" + stepArray[0].id + "','" + stepArray[0].sid + "','" + stepArray[0].s + "')";
+                $('#kastent').append('<a-entity id="' + stepArray[0].sid + '" geometry="primitive:box; width:0.2; height:0.1; depth:0.2;" material="color:red; opacity:0;" position="' + stepArray[0].pos + '" onmouseenter="' + fun + '" ><a-cylinder id="' + stepArray[0].id + '" position="0 0 0" rotation="' + stepArray[0].rot + '" color="' + stepArray[0].c + '" height="' + stepArray[0].h + '"  radius="' + stepArray[0].r + '" opacity="' + stepArray[0].o + '"></a-cylinder></a-entity>');
+            }else {
+                var fun = stepArray[0].f + "('" + stepArray[0].id + "','" + stepArray[0].sid + "','" + stepArray[0].s + "')";
+                $('#kastent').append('<a-entity id="' + stepArray[0].sid + '" geometry="primitive:box; width:0.2; height:0.1; depth:0.2;" material="color:red; opacity:0;" position="' + stepArray[0].pos + '" onmouseenter="' + fun + '"  hit="animation:x; from:0 180 0; id:handhammer; rotation:30 180 0;"><a-cylinder id="' + stepArray[0].id + '" position="0 0 0" rotation="' + stepArray[0].rot + '" color="' + stepArray[0].c + '" height="' + stepArray[0].h + '"  radius="' + stepArray[0].r + '" opacity="' + stepArray[0].o + '"></a-cylinder></a-entity>');
+            }
         }
     }else if((stepsTaken == 8 && deuvelsMoved == 6) || (stepsTaken == 18 && deuvelsMoved == 12)){
+
         var fun = stepArray[0].f + "('" + stepArray[0].id + "','" + stepArray[0].s + "')";
-        $('#scene').append('<a-box onmouseenter="' + fun + '" id="' + stepArray[0].id + '" position="' + stepArray[0].pos + '" rotation="' + stepArray[0].rot + '" color="' + stepArray[0].c + '" height="' + stepArray[0].h + '" width="' + stepArray[0].w + '" depth="' + stepArray[0].d + '" opacity="' + stepArray[0].o + '"></a-box>');
+        $('#kastent').append('<a-box onmouseenter="' + fun + '" id="' + stepArray[0].id + '" position="' + stepArray[0].pos + '" rotation="' + stepArray[0].rot + '" color="' + stepArray[0].c + '" height="' + stepArray[0].h + '" width="' + stepArray[0].w + '" depth="' + stepArray[0].d + '" opacity="' + stepArray[0].o + '"></a-box>');
+    }else if(stepsTaken >= 19 && deuvelsMoved == 12 && stepsTaken <= 20){
+
+        var fun = stepArray[0].f + "('" + stepArray[0].id + "','" + stepArray[0].s + "')";
+        $('#kastent').append('<a-box onmouseenter="' + fun + '" id="' + stepArray[0].id + '" position="' + stepArray[0].pos + '" rotation="' + stepArray[0].rot + '" color="' + stepArray[0].c + '" height="' + stepArray[0].h + '" width="' + stepArray[0].w + '" depth="' + stepArray[0].d + '" opacity="' + stepArray[0].o + '"></a-box>');
+
+    }else if(stepsTaken == 30){
+        console.log('end')
     }
     stepsTaken += 1;
-    console.log(stepsTaken);
-    console.log(deuvelsMoved);
+
 }
 
 function loadCursor(){
@@ -203,10 +228,14 @@ function drag(selector){
                 $('#camera').append('<a-box class="hand" id="handbox" color="grey" rotation="0 -15 25" position="0 -0.3 -0.8" depth="0.1875" height="0.2375" width="0.01125"></a-box>');
                 hand = '3';
                 quitCursor()
-            }else{
-                $('#camera').append(' <a-entity class="hand" id="handdeuvel" scale="0.02 0.02 0.02" position="0 -0.3 -0.8" rotation="0 0 25" obj-model="obj: #d-obj; mtl: #d-mtl"></a-entity>');
+            }else if(selector == '4'){
+                $('#camera').append(' <a-entity class="hand" id="handdeuvel" scale="0.02 0.02 0.02" position="0.2 -0.3 -0.8" rotation="0 0 -25" obj-model="obj: #d-obj; mtl: #d-mtl"></a-entity>');
                 hand = '4';
                 quitCursor()
+            }else if(selector == '5'){
+                $('#camera').append(' <a-entity class="hand" id="handschroef" scale="0.04 0.04 0.04" position="0.3 -0.2 -0.8" rotation="50 -90 0" obj-model="obj: #s-obj; mtl: #s-mtl"></a-entity>');
+                hand = '5';
+                quitCursor();
             }
         },1050);
         document.getElementById('selector'+selector).addEventListener('mouseleave', function () {
@@ -296,8 +325,34 @@ function placedeuvel(ele2,ele,selector){
             });
             document.getElementById(ele).removeAttribute('onmouseenter');
             document.getElementById(ele).setAttribute('onmouseenter','movePos("'+ele+'")');
-            $('#handdeuvel').remove();
-            hand = '';
+            // $('#handdeuvel').remove();
+            // hand = '';
+            stepArray.shift();
+            makeStep();
+            nextblad();
+            quitCursor();
+        },1050);
+        document.getElementById(ele).addEventListener('mouseleave', function () {
+            clearTimeout(timer);
+            quitCursor();
+        })
+    }
+}
+
+function placeschroef(ele2,ele,selector){
+    if(selector ==  hand){
+        loadCursor();
+        var timer = setTimeout(function () {
+            $('#'+ele2).remove();
+            if(ele2 == 'sc1' || ele2 == 'sc2' || ele2 == 'sc3' || ele2 =='sc4') {
+                $('#' + ele).append('<a-entity id="schroefappend" scale="0.03 0.03 0.03" position="0 0 0" rotation="0 90 0" obj-model="obj: #s-obj; mtl: #s-mtl"></a-entity>');
+            }else{
+                $('#' + ele).append('<a-entity id="schroefappend" scale="0.03 0.03 0.03" position="0 0 0" rotation="0 -90 0" obj-model="obj: #s-obj; mtl: #s-mtl"></a-entity>');
+            }
+            document.getElementById(ele).removeAttribute('onmouseenter');
+            document.getElementById(ele).setAttribute('onmouseenter','movePosSchroef("'+ele+'")');
+            // $('#handdeuvel').remove();
+            // hand = '';
             stepArray.shift();
             makeStep();
             nextblad();
@@ -319,6 +374,11 @@ function pickup(selector) {
                 $('#camera').append('<a-entity class="hand" id="handhammer" scale="0.15 0.15 0.15" position="0.5 -0.7 -0.8" rotation="30 180 0" obj-model="obj: #h-obj; mtl: #h-mtl"></a-entity>');
                 hand = 'p1';
                 quitCursor()
+            }else if(selector == '2'){
+                $('#draaier').remove();
+                $('#camera').append('<a-entity class="hand" id="handdraaier" scale="0.15 0.15 0.15" position="0.5 -0.4 -0.8" rotation="130 0 -15" obj-model="obj: #sd-obj; mtl: #sd-mtl"></a-entity>');
+                hand = 'p2';
+                quitCursor()
             }
         },1050);
         document.getElementById('pickup'+selector).addEventListener('mouseleave', function () {
@@ -336,9 +396,8 @@ function movePos(id){
         var i = 0.015;
         var inter = setInterval(function () {
             newz = changePos-i;
-            console.log(newz);
+
             var newPos = Object.values($('#'+id).attr('position'))[0] + " "+ newz + " " + Object.values($('#'+id).attr('position'))[2];
-            console.log(newPos);
             $('#'+id).attr('position',newPos);
             i+=0.015;
             y++;
@@ -346,7 +405,7 @@ function movePos(id){
                 clearTimeout(inter);
 
                 deuvelsMoved += 1;
-                console.log(deuvelsMoved);
+
                 if(deuvelsMoved ==6 || deuvelsMoved == 12){
                     makeStep();
                     nextblad();
@@ -356,12 +415,62 @@ function movePos(id){
     }
 }
 
+function movePosSchroef(id) {
+    if (hand == 'p2') {
+        $('#' + id).removeAttr('onmouseenter');
+        var changePos = parseFloat(Object.values($('#' + id).attr('position'))[0]);
+        var y = 0;
+        if (id == 's5' || id == 's6' || id == 's7' || id == 's8') {
+            var ii = 0.05;
+            var inter = setInterval(function () {
+                newzp = changePos - ii;
+                var newPos = newzp + " " + Object.values($('#' + id).attr('position'))[1] + " " + Object.values($('#' + id).attr('position'))[2];
+
+                $('#' + id).attr('position', newPos);
+                ii += 0.05;
+                y++;
+                if (y >= 3) {
+                    clearTimeout(inter);
+
+                    deuvelsMoved += 1;
+                    if (deuvelsMoved == 20) {
+                        makeStep();
+                        nextblad();
+                    }
+                }
+            }, 400)
+        } else {
+            var i = -0.05;
+            var inters = setInterval(function () {
+                var newzm = changePos - i;
+                var newPos = newzm + " " + Object.values($('#' + id).attr('position'))[1] + " " + Object.values($('#' + id).attr('position'))[2];
+                $('#' + id).attr('position', newPos);
+                i -= 0.05;
+                y++;
+                if (y >= 3) {
+                    clearTimeout(inters);
+
+                    deuvelsMoved += 1;
+                    if (deuvelsMoved == 16) {
+                        makeStep();
+                        nextblad();
+                    }
+                }
+            }, 400)
+        }
+    }
+}
+
+
+
 function emptyHand(){
     if(hand != '') {
         loadCursor();
         var timer = setTimeout(function () {
             if(hand == 'p1'){
-                $('#scene').append('<a-entity onmouseenter="pickup(\'1\')" id="pickup1" geometry="primity:box; width:1; height:0.1; depth:0.4;" material="color:red; opacity:0" position="1.7 0.1 -1.8"><a-entity id="hammer" scale="0.2 0.2 0.2" position="-0.4 0 -0.04" rotation="0 0 -90" obj-model="obj: #h-obj; mtl: #h-mtl"></a-entity></a-entity>');
+                $('#scene').append('<a-entity onmouseenter="pickup(\'1\')" id="pickup1" geometry="primity:box; width:1; height:0.1; depth:0.4;" material="color:red; opacity:0" position="1.7 0.1 -2.1"><a-entity id="hammer" scale="0.2 0.2 0.2" position="-0.4 0 -0.04" rotation="0 0 -90" obj-model="obj: #h-obj; mtl: #h-mtl"></a-entity></a-entity>');
+            }else if(hand == 'p2'){
+                $('#scene').append('<a-entity onmouseenter="pickup(\'2\')" id="pickup2" geometry="primity:box; width:1; height:0.1; depth:0.4;" material="color:red; opacity:0" position="1.7 0.1 -1.4"><a-entity id="draaier" scale="0.2 0.2 0.2" position="-0.2 0 -0.04" rotation="0 0 -90" obj-model="obj: #sd-obj; mtl: #sd-mtl"></a-entity></a-entity>');
             }
             $('.hand').remove();
             quitCursor();
@@ -399,6 +508,31 @@ AFRAME.registerComponent("hit",{
     }
 });
 
+AFRAME.registerComponent("screw",{
+    schema : {
+        rotation : {type : "string"},
+        from: {type: "string"},
+        id : {type: "string"},
+        animation : {type: "string"}
+    },
+    init : function(){
+        this.el.addEventListener("mouseenter",function(){
+            if(hand == 'p1'){
+                audio.play();
+            }
+            var animation = document.createElement("a-animation");
+            animation.setAttribute("id",this.data.animation);
+            animation.setAttribute("attribute","rotation");
+            animation.setAttribute("from",this.data.from);
+            animation.setAttribute("to",this.data.rotation);
+            animation.setAttribute("direction","alternate");
+            animation.setAttribute("dur","250");
+            animation.setAttribute("repeat","5");
+            document.getElementById(this.data.id).appendChild(animation);
+        }.bind(this));
+    }
+});
+
 
 function getLocation() {
     if (navigator.geolocation) {
@@ -410,17 +544,13 @@ function getLocation() {
 function showPosition(position) {
     homelat = position.coords.latitude;
     homelng = position.coords.longitude;
-    console.log('huidige positie');
-    console.log(homelat);
-    console.log(homelng);
 }
 
 function afstand(){
-    var data = $.getJSON({url: 'http://ipmedt3.dionvdberg.nl/ikealocations.php', async: false}).responseJSON.items;
+    var data = $.getJSON({url: 'ikealocations.php', async: false}).responseJSON.items;
     vorigeAfstand = 0;
     kleinsteAfstand = 0;
     afstand = 500;
-    console.log(data)
 
     // Voor alle resultaten gaan we kijken wat er in zit
     for (var i = 0; i < data.length; i++)
@@ -433,16 +563,12 @@ function afstand(){
           kleinsteAfstand = i;
 
           // Log voor een betere wereld.
-          console.log(data[kleinsteAfstand].name + ' is op '+ round(onLocationChanged(data[kleinsteAfstand]), 2) + ' km afstand');
         }
         else if ((afstand < onLocationChanged(data[i])) && (kleinsteAfstand > onLocationChanged(data[i]))) {
-          console.log('used');
             vorigeAfstand = i;
         }
     }
 
-    console.log(data[vorigeAfstand].name);
-    // console.log('2. ' + data[vorigeAfstand].name + ' is op '+ round(onLocationChanged(data[vorigeAfstand]), 2) + ' km afstand');
     return String(data[kleinsteAfstand].name + ' is op '+ round(onLocationChanged(data[kleinsteAfstand]), 2) + ' km afstand \n ' +
         'vandaag geopend: '+ data[kleinsteAfstand].opening_hours[day]  + '\n \n'
 
