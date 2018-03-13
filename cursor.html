@@ -1,0 +1,42 @@
+<html>
+<head>
+    <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <!--<script src="cursor.js"></script>-->
+    <script src="kek.js"></script>
+
+</head>
+<body>
+<a-scene id="scene" stats>
+
+    <a-box id="box" height="1" width="1" depth="1" position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
+    <a-box id="box2" position="1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
+    <a-box id="placebox" position="-3 0.5 -3" rotation="0 45 0" color="green" opacity="0.2">
+        <a-animation attribute="opacity" from="0.2" to="0.1" dur="800" repeat="indefinite"></a-animation>
+    </a-box>
+    <a-entity id="camera" camera wasd-controls look-controls position="0 1.8 0">
+        <a-entity
+                cursor="fuse: true; maxDistance: 500; timeout: 3000;"
+                id="cursor-main"
+                position="0 0 -1"
+                geometry="primitive: ring; radiusOuter: 0.02; radiusInner: 0.01; thetaLength: 360; thetaStart: 90;"
+                material="color: grey;"
+        >
+            <a-animation begin="cursor-hovering" attribute="geometry.thetaLength" fill="forwards" from="360" to="0" dur="1000" easing="ease-in"></a-animation>
+            <a-animation begin="mouseleave" attribute="geometry.thetaLength" fill="backwards" from="0" to="360" dur="0"></a-animation>
+        </a-entity>
+        <a-entity
+                id="cursor-loader"
+                position="0 0 -1.0001"
+                geometry="primitive: ring; radiusOuter: 0.02; radiusInner: 0.01;"
+                material="color: grey;"
+                opacity="0"
+        >
+        </a-entity>
+    </a-entity>
+    <a-sky color="#ECECEC"></a-sky>
+</a-scene>
+
+
+</body>
+</html>

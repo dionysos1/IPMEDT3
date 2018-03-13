@@ -1,0 +1,180 @@
+<html>
+<head>
+    <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <!--<script src="cursor.js"></script>-->
+    <script src="cursor.js"></script>
+
+</head>
+<body>
+<a-scene stats id="scene" shadow="type:soft">
+    <a-assets>
+        <a-asset-item id="house-obj" src="obj/insidethehouse.obj"></a-asset-item>
+        <a-asset-item id="house-mtl" src="obj/insidethehouse.mtl"></a-asset-item>
+        <a-asset-item id="t-obj" src="obj/table.obj"></a-asset-item>
+        <a-asset-item id="t-mtl" src="obj/table.mtl"></a-asset-item>
+        <a-asset-item id="b-obj" src="obj/box.obj"></a-asset-item>
+        <a-asset-item id="b-mtl" src="obj/box.mtl"></a-asset-item>
+        <a-asset-item id="d-obj" src="obj/deuvel.obj"></a-asset-item>
+        <a-asset-item id="d-mtl" src="obj/deuvel.mtl"></a-asset-item>
+        <a-asset-item id="h-obj" src="obj/hammer.obj"></a-asset-item>
+        <a-asset-item id="h-mtl" src="obj/hammer.mtl"></a-asset-item>
+        <a-asset-item id="r-obj" src="obj/reclamebord.obj"></a-asset-item>
+        <a-asset-item id="r-mtl" src="obj/reclamebord.mtl"></a-asset-item>
+        <a-asset-item id="s-obj" src="obj/schroef.obj"></a-asset-item>
+        <a-asset-item id="s-mtl" src="obj/schroef.mtl"></a-asset-item>
+        <a-asset-item id="sd-obj" src="obj/schroefdraaier.obj"></a-asset-item>
+        <a-asset-item id="sd-mtl" src="obj/schroefdraaier.mtl"></a-asset-item>
+        <a-asset-item id="c-obj" src="obj/couch.obj"></a-asset-item>
+        <a-asset-item id="c-mtl" src="obj/couch.mtl"></a-asset-item>
+        <a-asset-item id="l-obj" src="obj/light.obj"></a-asset-item>
+        <a-asset-item id="l-mtl" src="obj/light.mtl"></a-asset-item>
+    </a-assets>
+    <a-entity id="house" scale="1 1 1" position="0 0 0" rotation="0 -90 0" obj-model="obj: #house-obj; mtl: #house-mtl"></a-entity>
+    <a-entity id="table" scale="0.5 0.5 0.5" position="2.7 0.1 0" rotation="0 -135 0" obj-model="obj: #t-obj; mtl: #t-mtl"></a-entity>
+    <a-entity id="doos" scale="0.7 0.7 0.7" position="3.5 0.02 -2" rotation="0 -90 0" obj-model="obj: #b-obj; mtl: #b-mtl"></a-entity>
+
+    <a-image class="raam" id= "raam1" src="raam1.jpg" position = "2.3 2.6 -10.5" height="3" width="3.5" rotation="0 0 0"></a-image>
+    <a-image class="raam" id= "raam2" src="raam2.jpg" position = "7.2 2.6 -1" height="3" width="3.5" rotation="0 90 0"></a-image>
+
+    <a-image id="uitleg" data-stap="1" src="1stap.jpg" position="1.75 1.25 0" rotation="-10 -135 0" width="1.4" height="1.2" rotation="-20 -90 0"></a-image>
+
+
+    <a-entity id="ikeabox"  onmouseenter="ikeahover('ikeabox')" scale="1.5 1.5 1.5" position="0.3 1.5 3" rotation="0 90 0" obj-model="obj: #r-obj; mtl: #r-mtl"></a-entity>
+	<a-box id="ikeahoverbox" onmouseenter="ikeahover('ikeahoverbox')" opacity="0" position="-0.5 2.1 2.9" width=4" height="2" depth="0.1" visible="false"></a-box>
+    <a-entity id="ikea"  position="-0.5 2.7 3" text="align: center; width: 3; value: Wat is de dichtsbijzijnde IKEA ?; color:blue;" rotation="0 180 0"></a-entity>
+
+    <a-entity onmouseenter="drag('1')" id="selector1" geometry="primity:box; width:0.4; height:1.5; depth:0.4;" material="color:red; opacity:0;" position="3.7 0.7 -2.8">
+    <a-box text="value:1" id="box11" position="0 0 0" rotation="0 35 90" color="#6b6b6b" width="1.4" height="0.05" depth="0.375">
+    </a-box>
+    </a-entity>
+    <a-entity onmouseenter="drag('2')" id="selector2" geometry="primity:box; width:0.4; height:0.5; depth:0.4;" material="color:red; opacity:0;" position="3.7 0.3 -2">
+    <a-box text="value:2" id="topbox11" position="0 0 0" rotation="0 35 0" color="#6b6b6b" width="0.075" height="0.475" depth="0.375">
+    </a-box>
+    </a-entity>
+    <a-entity onmouseenter="drag('3')" id="selector3" geometry="primity:box; width:0.4; height:0.5; depth:0.4;" material="color:red; opacity:0;" position="3.7 0.3 -1.3">
+    <a-box id="sbox33" position="0 0 0" rotation="0 35 0" color="#6b6b6b" width="0.025" height="0.475" depth="0.375">
+    </a-box>
+    </a-entity>
+    <a-entity onmouseenter="drag('4')" id="selector4" geometry="primity:box; width:0.2; height:0.35; depth:0.17;" material="color:red; opacity:0" position="3.3 0.1 -2.4">
+        <a-entity id="deuvel" scale="0.03 0.03 0.03" position="0 0 0" rotation="0 90 25" obj-model="obj: #d-obj; mtl: #d-mtl">
+        </a-entity>
+    </a-entity>
+    <a-entity onmouseenter="drag('5')" id="selector5" geometry="primity:box; width:0.2; height:0.35; depth:0.13;" material="color:red; opacity:0" position="3.3 0.15 -1.7">
+        <a-entity id="schroef" scale="0.045 0.045 0.045" position="0 0 0" rotation="65 180 0" obj-model="obj: #s-obj; mtl: #s-mtl">
+        </a-entity>
+    </a-entity>
+
+
+    <a-entity onmouseenter="pickup('1')" id="pickup1" geometry="primity:box; width:1; height:0.1; depth:0.4;" material="color:red; opacity:0" position="1.7 0.1 -2.1">
+        <a-entity id="hammer" scale="0.2 0.2 0.2" position="-0.4 0 -0.04" rotation="0 0 -90" obj-model="obj: #h-obj; mtl: #h-mtl">
+        </a-entity>
+    </a-entity>
+    <a-entity onmouseenter="pickup('2')" id="pickup2" geometry="primity:box; width:1; height:0.1; depth:0.4;" material="color:red; opacity:0" position="1.7 0.1 -1.4">
+        <a-entity id="draaier" scale="0.2 0.2 0.2" position="-0.2 0 -0.04" rotation="0 0 -90" obj-model="obj: #sd-obj; mtl: #sd-mtl">
+        </a-entity>
+    </a-entity>
+
+    <a-entity id="emptyhand" geometry="primitive:cylinder; radius:0.3; height:0.001;" position="1.5 0.05 -3" material="color:#212121" onmouseenter="emptyHand()"></a-entity>
+    <a-entity position="1.52 0.05 -3" text="value: Hand legen; color:white; align:center; width:2" rotation="-90 -110 45" onmouseenter="emptyHand()"></a-entity>
+
+
+    <a-camera id="camera" camera="userHeight: 1.4" wasd-controls look-controls rotation="0 -90 0" position="0 0 -2">
+        <a-entity
+                cursor="fuse: true; maxDistance: 500; timeout: 1000;"
+                id="cursor-main"
+                position="0 0 -1"
+                geometry="primitive: ring; radiusOuter: 0.02; radiusInner: 0.01; thetaLength: 360; thetaStart: 90;"
+                material="color: #3b4f70;"
+        >
+            <a-animation begin="cursor-hovering" attribute="geometry.thetaLength" fill="forwards" from="360" to="0" dur="1000" easing="ease-in"></a-animation>
+            <a-animation begin="mouseleave" attribute="geometry.thetaLength" fill="backwards" from="0" to="360" dur="0"></a-animation>
+        </a-entity>
+        <a-entity
+                id="cursor-loader"
+                position="0 0 -1.0001"
+                geometry="primitive: ring; radiusOuter: 0.02; radiusInner: 0.01;"
+                material="color: #3b4f70;"
+                opacity="0"
+        >
+        </a-entity>
+    </a-camera>
+
+    <a-entity id="couch" scale="0.6 0.6 0.6" position="-1 0.6 -8" rotation="0 0 0" obj-model="obj: #c-obj; mtl: #c-mtl">
+    </a-entity>
+
+    <a-entity id="light" scale="0.6 0.6 0.6" position="6.5 0 -9.6" rotation="0 0 0" obj-model="obj: #l-obj; mtl: #l-mtl">
+    </a-entity>
+
+    <a-entity id="kastent" position="1 0 -4.3" rotation="0 0 0">
+        <a-animation
+                id="kastanimation"
+            begin="setfirst"
+            end="stopfirst"
+            attribute="rotation"
+            fill="forwards"
+            to="0 45 0"
+            dur="1000"
+            easing="ease-in"
+        >
+        </a-animation>
+        <a-animation
+                id="kastanimation2"
+                begin="setsec"
+                end="stopsec"
+                attribute="rotation"
+                fill="forwards"
+                from="0 45 0"
+                to="0 225 0"
+                dur="1000"
+                easing="ease-in"
+        >
+        </a-animation>
+        <a-animation
+                id="kastanimation2"
+                begin="setthir"
+                end="stopthir"
+                attribute="rotation"
+                fill="forwards"
+                from="0 45 0"
+                to="0 0 90"
+                dur="2000"
+                easing="ease-in"
+        >
+        </a-animation>
+        <a-animation
+                id="kastanimation2"
+                begin="setthirpos"
+                end="stopthirpos"
+                attribute="position"
+                fill="forwards"
+                from="1 0 -4.1"
+                to="1 1.5 -4.1"
+                dur="2000"
+                easing="ease-in"
+        >
+        </a-animation>
+        <a-animation
+                id="kastanimation2"
+                begin="setfour"
+                end="stopfour"
+                attribute="rotation"
+                fill="forwards"
+                from="0 0 90"
+                to="0 360 90"
+                dur="8000"
+                easing="linear"
+                repeat="indefinite"
+        >
+        </a-animation>
+    </a-entity>
+
+    <a-entity light="type:ambient; color:#fff0dd; intensity:0.7;"></a-entity>
+    <a-entity light="type:directional; castShadow:true; color:#fff0dd; intensity: 0.25" position="0 10 10"></a-entity>
+    <a-entity light="type:directional; castShadow:true; color:#fff0dd; intensity: 0.25" position="2 3 -2"></a-entity>
+</a-scene>
+
+
+
+</body>
+</html>
